@@ -7,22 +7,33 @@ Running 2 nodes requires high RAM (64GB or more).
 Do NOT try this on low RAM VPS.
 
 ✅ Step 1 — Create a New Directory for Node 2
-mkdir node1
+
+**mkdir node1**
 
 ✅ Step 2 — Open the Directory
-cd node1 && ls
+
+**cd node1 && ls**
 
 ✅ Step 3 — Clone the RL-Swarm Repository
-git clone https://github.com/gensyn-ai/rl-swarm/
+
+
+**git clone https://github.com/gensyn-ai/rl-swarm/**
 
 ✅ Step 4 — Enter the RL-Swarm Folder
-cd rl-swarm
+
+**cd rl-swarm**
 
 ✅ Step 5 — Change All 3000 Ports to 3001 in modal-login/package.json
 
 Open file in nano:
 
-nano modal-login/package.json
+**nano run_rl_swarm.sh**
+
+![Step 5 Screenshot](https://i.ibb.co/Sw6cgHf2/photo-2025-11-30-11-32-28.jpg)
+
+
+![Step Screenshot](https://i.ibb.co/2YZLwLRv/photo-2025-11-30-11-32-42.jpg)
+
 
 🔧 Inside nano editor:
 
@@ -40,7 +51,10 @@ CTRL + X → Y → ENTER
 
 Open config:
 
-nano code_gen_exp/config/code-gen-swarm.yaml
+**nano code_gen_exp/config/code-gen-swarm.yaml**
+
+![Screenshot](https://i.ibb.co/whsmtcGq/photo-2025-11-30-11-33-00.jpg)
+
 
 🔧 Inside file:
 
@@ -54,14 +68,18 @@ CTRL + X → Y → ENTER
 
 Open again:
 
-nano modal-login/package.json
+**nano modal-login/package.json**
+
+![Screenshot](https://i.ibb.co/BHypGhsG/photo-2025-11-30-11-33-04.jpg)
+
 
 
 Now modify two lines:
 
 Before	After
-next dev	next dev -p 3001
-next start	next start -p 3001
+
+next dev	**next dev -p 3001**
+next start	**next start -p 3001**
 
 Save:
 
@@ -72,10 +90,11 @@ CTRL + X → Y → ENTER
 If your original node uses screen gensyn,
 create a different screen name for node 2:
 
-screen -S gensyn2
+**screen -S gensyn2**
 
-✅ Step 9 — Create Virtual Environment & Start Node
-python3 -m venv .venv && source .venv/bin/activate && bash run_rl_swarm.sh
+✅ Step 9 —  Start Node
+
+**python3 -m venv .venv && source .venv/bin/activate && bash run_rl_swarm.sh**
 
 
 Your second Gensyn node is now running on port 3001 in a screen session.
@@ -89,13 +108,16 @@ CTRL + A + D
 Open a new terminal tab of same VPS and run:
 
 1. Download Cloudflared
-wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+
+**wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb**
 
 2. Install it
-sudo dpkg -i cloudflared-linux-amd64.deb
+
+**sudo dpkg -i cloudflared-linux-amd64.deb**
 
 3. Create tunnel for port 3001
-cloudflared tunnel --url http://localhost:3001
+
+**cloudflared tunnel --url http://localhost:3001**
 
 
 A public URL will appear →
